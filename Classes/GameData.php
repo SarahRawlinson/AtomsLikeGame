@@ -2,12 +2,40 @@
 class GameData
 {
     private array $cells;
-    const RowCount = 5;
-    const ColumnCount = 5;
+    const RowCount = 8;
+    const ColumnCount = 8;
     
     public function __construct()
     {
         
+    }
+    
+    public function GetScore()
+    {
+        $cellsWon = [];
+        $emptyCells = 0;
+        $playerUnits = [];
+        foreach ($this->cells as $cell)
+        {
+            $player = $cell->WinningPlayer();
+            if (isset($player))
+            {
+                $cellsWon[] = $player->GetName();
+                if (isset($playerUnits[$player->GetName()]))
+                {
+                    $playerUnits[$player->GetName()] += $cell->GetAtoms();
+                }
+                else
+                {
+                    $playerUnits[$player->GetName()] = $cell->GetAtoms();
+                }
+            }
+            else
+            {
+                $emptyCells++;
+            }
+        }
+        return [$cellsWon, $emptyCells, $playerUnits];
     }
     
     public function AddCell(Cell $cell): void
@@ -27,43 +55,60 @@ class GameData
     
     public function CellExploded(Cell $cell, IPlayer $winner): void
     {
+        //echo $cell->getNumber()." has exploded by ".$winner->GetName()."<br>";
         $row = $cell->getRowPos();
         $column = $cell->getColumnPos();
-        $players = $cell->getPlayerAtoms($winner->GetName());
-        $rows[] = $row;
-        $columns[] = $column;
-        if ($row > 1)
+        $atomsToReplace = $cell->GetAtoms();
+        $cell->EmptyCell();
+        $cells = $this->GetViableCells($row, $column);
+        
+        $loop = 0;
+        for ($i = 0; $i < $atomsToReplace; $i++)
         {
-            $rows[] = $row -1;
-        }
-        if ($row < self::RowCount)
-        {
-            $rows[] = $row +1;
-        }
-        if ($column > 1)
-        {
-            $columns[] = $column -1;
-        }
-        if ($column < self::ColumnCount)
-        {
-            $columns[] = $column +1;
-        }
-        for ($i = 0; $i < $players; $i++)
-        {
-            $newRow = $row;
-            $newColumn = $column;
-            while ($newRow == $row && $newColumn == $column)
+            //list($newRow, $newColumn, $viable) = $cells[rand(0, count($cells)-1)];
+            list($newRow, $newColumn, $viable) = $cells[$loop];
+            //echo "row=".$newRow.", column=".$newColumn.", viable=".$viable."<br>";
+            if ($viable)
             {
-                $rr = rand(0, count($rows)-1);
-                //echo "\nrows =".$rr."\n";
-                $newRow = $rows[$rr];
-                $rc = rand(0, count($columns)-1);
-                //echo "\ncolumns ".$rc."\n";
-                $newColumn = $columns[$rc];
+                $newCell = $this->GetCellByPosition($newRow, $newColumn);
+                //echo "cell number ".$newCell->getNumber()."<br>";
+                $newCell->ChangeAllAtoms($winner);
+                $newCell->AddAtom($winner,$_SESSION[$winner->GetOpponent()]);
             }
-            $newCell = $this->GetCellByPosition($newRow, $newColumn);
-            $player = $winner;
-            $newCell->AddAtom($player,$_SESSION[$player->GetOpponent()]);
+//            else {
+//                echo "Cell lost to the either<br>";
+//            }
+            $loop++;
+            if ($loop > (count($cells)-1))
+            {
+                $loop = 0;
+            }
+            
         }
+    }
+
+    /**
+     * @param int $row
+     * @param int $column
+     * @return array[]
+     */
+    public function GetViableCells(int $row, int $column): array
+    {
+
+        if ($row < self::RowCount) {
+            $rows[] = $row + 1;
+        }
+        if ($column > 1) {
+            $columns[] = $column - 1;
+        }
+        if ($column < self::ColumnCount) {
+            $columns[] = $column + 1;
+        }
+        $up = [$row-1, $column, $row > 1];
+        $down = [$row+1, $column, $row < self::RowCount];
+        $left = [$row, $column-1, $column > 1];
+        $right = [$row, $column+1, $column < self::ColumnCount];
+        
+        return [$up, $down, $left, $right];
     }
 }

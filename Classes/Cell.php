@@ -2,8 +2,8 @@
 
 class Cell
 {
-    const AtomMaxLimit = 10;
-    const AtomMinLimit = 2;
+    const AtomMaxLimit = 4;
+    const AtomMinLimit = 4;
     const DefaultColour = "#FFD700";
     private int $rowPos;
     private int $columnPos;
@@ -33,22 +33,19 @@ class Cell
         return $_SESSION[array_search($maxAtoms, $players)];
     }
     
-    public function AddAtom(IPlayer $player, IPlayer $opponent):void
+    public function AddAtom(IPlayer $player, IPlayer $opponent): bool
     {
-        if (($this->atoms + 1) > $this->atomLimit)
-        {            
-            $this->Explode($opponent);            
+        if (count($this->playerAtoms) > 0 && !in_array($player->GetName(), $this->playerAtoms))
+        {
+            return false;
         }
-        else
+        $this->atoms++;
+        $this->playerAtoms[] = $player->GetName();
+        if ($this->atoms >= $this->atomLimit)
         {            
-            $this->atoms++;
-            $this->playerAtoms[] = $player->GetName();
-//            $v = $this->WinningPlayer();
-//            if (isset($v))
-//            {
-//                //echo $v->GetColour();
-//            }            
+            $this->Explode($player);            
         }
+        return true;
     }
 
     /**
@@ -81,14 +78,16 @@ class Cell
         //echo $winner->GetColour()."\n";
         //$this->cellColour = $winner->GetColour();
         //echo $this->cellColour."\n";
-        $this->atoms = 0;
-        $this->playerAtoms = [];
         //echo $this->number." has exploded";
     }
     
     public function GetAtoms():int
     {
         return $this->atoms;
+    }
+    public function GetAtomOwners(): array
+    {
+        return $this->playerAtoms;
     }
 
     /**
@@ -108,7 +107,7 @@ class Cell
      * @param string $player
      * @return int
      */
-    public function GetPlayerAtoms(string $player): int
+    public function GetPlayerAtomsByPlayer(string $player): int
     {
         $counts = array_count_values($this->playerAtoms);
 
@@ -119,5 +118,28 @@ class Cell
             return $counts[$player];
         }     
         return 0;
+    }
+
+    public function ChangeAllAtoms(IPlayer $winner): void
+    {
+        //echo $winner->GetName()." now has cell ".$this->number."<br>";
+        for ($i = 0;$i < count($this->playerAtoms); $i++)
+        {            
+            $this->playerAtoms[$i] = $winner->GetName();
+        }
+    }
+
+    public function GetPlayerAtoms(): int
+    {
+        return count($this->playerAtoms);
+    }
+
+    /**
+     * @return void
+     */
+    public function EmptyCell(): void
+    {
+        $this->atoms = 0;
+        $this->playerAtoms = [];
     }
 }
