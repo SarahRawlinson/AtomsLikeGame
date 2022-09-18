@@ -2,9 +2,9 @@
 
 class Player implements IPlayer
 {
-    private string $colour;
-    private string $name;
-    private string $opponent;
+    private  $colour;
+    private  $name;
+    private  $opponent;
     
     public function __construct(string $colour, string $name, string $opponent)
     { 

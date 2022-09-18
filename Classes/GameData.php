@@ -1,7 +1,7 @@
 ﻿<?php
 class GameData
 {
-    private array $cells;
+    private $cells;
     const RowCount = 8;
     const ColumnCount = 8;
     
@@ -38,7 +38,7 @@ class GameData
         return [$cellsWon, $emptyCells, $playerUnits];
     }
     
-    public function AddCell(Cell $cell): void
+    public function AddCell(Cell $cell)
     {
         $this->cells[$cell->getNumber().''] = $cell;
     }
@@ -53,7 +53,7 @@ class GameData
         return $this->GetCell((($r*self::ColumnCount)-self::ColumnCount)+$c);
     }
     
-    public function CellExploded(Cell $cell, IPlayer $winner): void
+    public function CellExploded(Cell $cell, IPlayer $winner)
     {
         //echo $cell->getNumber()." has exploded by ".$winner->GetName()."<br>";
         $row = $cell->getRowPos();

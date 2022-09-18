@@ -5,13 +5,13 @@ class Cell
     const AtomMaxLimit = 4;
     const AtomMinLimit = 4;
     const DefaultColour = "#FFD700";
-    private int $rowPos;
-    private int $columnPos;
-    private int $number;
-    private int $atomLimit;
-    private int $atoms = 0;
-    private string $cellColour = "#FFD700";
-    private array $playerAtoms = [];
+    private  $rowPos;
+    private  $columnPos;
+    private  $number;
+    private  $atomLimit;
+    private  $atoms = 0;
+    private  $cellColour = "#FFD700";
+    private  $playerAtoms = [];
     
     public function __construct(int $rowPos, int $columnPos, int $number)
     {
@@ -21,7 +21,7 @@ class Cell
         $this->atomLimit = rand(self::AtomMinLimit, self::AtomMaxLimit);
     }
     
-    public function WinningPlayer(): IPlayer | null
+    public function WinningPlayer()
     {
         if (count($this->playerAtoms) == 0) 
         {
@@ -72,7 +72,7 @@ class Cell
         return $this->number;
     }
 
-    private function Explode(IPlayer $winner): void
+    private function Explode(IPlayer $winner)
     {
         $_SESSION['game_data']->CellExploded($this, $winner);
         //echo $winner->GetColour()."\n";
@@ -120,7 +120,7 @@ class Cell
         return 0;
     }
 
-    public function ChangeAllAtoms(IPlayer $winner): void
+    public function ChangeAllAtoms(IPlayer $winner)
     {
         //echo $winner->GetName()." now has cell ".$this->number."<br>";
         for ($i = 0;$i < count($this->playerAtoms); $i++)
@@ -137,7 +137,7 @@ class Cell
     /**
      * @return void
      */
-    public function EmptyCell(): void
+    public function EmptyCell()
     {
         $this->atoms = 0;
         $this->playerAtoms = [];

@@ -115,7 +115,7 @@ body
     background-color: slategrey;
     text-align: center;
     font-family: Broadway;
-    background-image: url('../StockImages/photos_2018_2_14_fst_blurry-bokeh-hearts.jpg');
+    background-image: url('../StockImages/photos_2017_9_5_fst_bokeh-texture-colorful.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding: 10px;
@@ -164,8 +164,8 @@ a
 }
 
 .circle {
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
     /*background-color: #555;*/
     border-radius: 50%;
 }

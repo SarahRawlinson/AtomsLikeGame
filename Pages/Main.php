@@ -3,6 +3,7 @@ require_once "include.php";
 $_SESSION['game_data'] = new GameData();
 $_SESSION['player'] = new Player('#00FFFF', 'player', 'ai');
 $_SESSION['ai'] = new Player('#DC143C', 'ai', 'player');
+$_SESSION['started'] = null;
 ?>
 <!DOCTYPE html>
 <html>

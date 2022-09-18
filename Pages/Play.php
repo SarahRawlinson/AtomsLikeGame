@@ -5,9 +5,11 @@ $table = "";
 if (isset($_SESSION['game_data']) && isset($_POST['selection']))
 {
     list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
+    
+    
     if (count($playerUnits) == 1 && isset($_SESSION['started']))
     {
-        $str = "Game Over ".array_search(max($playerUnits), $playerUnits)." Won!";
+        $str = "Game Over ".array_search(max($playerUnits), $playerUnits)." Won!<br>";
         $table = TableGenerator::GenerateTable(false);
         session_destroy();
     }
@@ -19,7 +21,7 @@ if (isset($_SESSION['game_data']) && isset($_POST['selection']))
         list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
         if (count($playerUnits) == 1 && isset($_SESSION['started']))
         {
-            $str = "Game Over ".array_search(max($playerUnits), $playerUnits)." Won!";
+            $str = "Game Over ".array_search(max($playerUnits), $playerUnits)." Won!<br>";
             $table = TableGenerator::GenerateTable(false);
             session_destroy();
         }        
@@ -36,12 +38,21 @@ if (isset($_SESSION['game_data']) && isset($_POST['selection']))
 
             }
             else {
-                $str = "You cant select that cell";
+                $str .= "You cant select that cell";
             }
             $table = TableGenerator::GenerateTable(true);
         }
         $_SESSION['started'] = true;
         
+    }
+    list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
+    if (isset($playerUnits['ai'])>0)
+    {
+        $str .= "AI = ".$playerUnits['ai']."<br>";
+    }
+    if (isset($playerUnits['player'])>0)
+    {
+        $str .= "Player = ".$playerUnits['player']."<br>";
     }
     
     
