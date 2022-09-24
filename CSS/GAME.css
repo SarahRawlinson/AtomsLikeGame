@@ -109,6 +109,11 @@ p
     justify-content: space-around;
 
 }
+table
+{
+    margin-left: auto;
+    margin-right: auto;
+}
 
 body
 {
