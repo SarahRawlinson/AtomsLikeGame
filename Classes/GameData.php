@@ -9,6 +9,11 @@ class GameData
     {
         
     }
+
+    public function GetAllCells()
+    {
+        return $this->cells;
+    }
     
     public function GetScore()
     {

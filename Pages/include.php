@@ -4,6 +4,8 @@ require_once "../Classes/Cell.php";
 require_once "../Classes/IPlayer.php";
 require_once "../Classes/Player.php";
 require_once "../Classes/TableGenerator.php";
+require_once "../Classes/AI.php";
+require_once "../Classes/GamePlay.php";
 
 //session_destroy();
 session_start();
