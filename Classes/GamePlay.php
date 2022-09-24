@@ -27,7 +27,8 @@ class GamePlay
                     $str = "Game Over " . array_search(max($playerUnits), $playerUnits) . " Won!<br>";
                     $table = TableGenerator::GenerateTable(false);
                     session_destroy();
-                } else {
+                } 
+                else {
                     if ($valid) {
                         AI::AIMove();
 

@@ -3,7 +3,7 @@ require_once "include.php";
 $str = "";
 $table = "";
 
-list($str, $table) = GamePlay::PlayGame($str, $table);
+ list($str, $table) = GamePlay::PlayGame($str, $table);
 
 
 ?>

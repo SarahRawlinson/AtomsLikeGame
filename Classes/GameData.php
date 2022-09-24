@@ -55,7 +55,7 @@ class GameData
     
     private function GetCellByPosition(int $r, int $c): Cell
     {
-        return $this->GetCell((($r*self::ColumnCount)-self::ColumnCount)+$c);
+        return $this->GetCell(GameData::GetCellNumber($r, $c));
     }
     
     public function CellExploded(Cell $cell, IPlayer $winner)
@@ -65,7 +65,7 @@ class GameData
         $column = $cell->getColumnPos();
         $atomsToReplace = $cell->GetAtoms();
         $cell->EmptyCell();
-        $cells = $this->GetViableCells($row, $column);
+        $cells = GameData::GetViableCells($row, $column);
         
         $loop = 0;
         for ($i = 0; $i < $atomsToReplace; $i++)
@@ -97,7 +97,7 @@ class GameData
      * @param int $column
      * @return array[]
      */
-    public function GetViableCells(int $row, int $column): array
+    public static function GetViableCells(int $row, int $column): array
     {
 
         if ($row < self::RowCount) {
@@ -115,5 +115,15 @@ class GameData
         $right = [$row, $column+1, $column < self::ColumnCount];
         
         return [$up, $down, $left, $right];
+    }
+
+    /**
+     * @param int $r
+     * @param int $c
+     * @return float|int
+     */
+    public static function GetCellNumber(int $r, int $c)
+    {
+        return (($r * self::ColumnCount) - self::ColumnCount) + $c;
     }
 }

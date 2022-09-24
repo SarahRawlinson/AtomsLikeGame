@@ -21,16 +21,24 @@ class Cell
         $this->atomLimit = rand(self::AtomMinLimit, self::AtomMaxLimit);
     }
     
+//    public function WinningPlayer()
+//    {
+//        if (count($this->playerAtoms) == 0) 
+//        {
+//            return null;
+//        }
+//        $players = array_count_values($this->playerAtoms);
+//        $maxAtoms = max($players);
+//        //print_r($maxAtoms);
+//        return $_SESSION[array_search($maxAtoms, $players)];
+//    }
     public function WinningPlayer()
     {
-        if (count($this->playerAtoms) == 0) 
+        if (count($this->playerAtoms) == 0)
         {
             return null;
         }
-        $players = array_count_values($this->playerAtoms);
-        $maxAtoms = max($players);
-        //print_r($maxAtoms);
-        return $_SESSION[array_search($maxAtoms, $players)];
+        return $_SESSION[$this->playerAtoms[0]];
     }
     
     public function AddAtom(IPlayer $player, IPlayer $opponent): bool
@@ -85,6 +93,7 @@ class Cell
     {
         return $this->atoms;
     }
+    
     public function GetAtomOwners(): array
     {
         return $this->playerAtoms;
