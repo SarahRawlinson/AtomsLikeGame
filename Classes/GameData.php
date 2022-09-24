@@ -2,10 +2,36 @@
 class GameData
 {
     private $cells;
-    const RowCount = 8;
-    const ColumnCount = 8;
+    private $RowCount = 8;
+    private $ColumnCount = 8;
     private $set = false;
+    private $MinAtom = 4;
+    private $MaxAtom = 4;
+
+    public function Reset()
+    {
+        $cells = null;
+    }
     
+    /**
+     * @param int $RowCount
+     */
+    public function setRowCount(int $RowCount)
+    {
+        $this->RowCount = $RowCount;
+        echo "<p>row set ".$this->RowCount."</p>";
+    }
+
+    /**
+     * @param int $ColumnCount
+     */
+    public function setColumnCount(int $ColumnCount)
+    {
+        
+        $this->ColumnCount = $ColumnCount;
+        echo "<p>column set ".$this->ColumnCount."</p>";
+    }
+
     public function IsSet():bool
     {
         return count($this->cells) > 0;
@@ -103,22 +129,22 @@ class GameData
      * @param int $column
      * @return array[]
      */
-    public static function GetViableCells(int $row, int $column): array
+    public function GetViableCells(int $row, int $column): array
     {
 
-        if ($row < self::RowCount) {
+        if ($row < $this->RowCount) {
             $rows[] = $row + 1;
         }
         if ($column > 1) {
             $columns[] = $column - 1;
         }
-        if ($column < self::ColumnCount) {
+        if ($column < $this->ColumnCount) {
             $columns[] = $column + 1;
         }
         $up = [$row-1, $column, $row > 1];
-        $down = [$row+1, $column, $row < self::RowCount];
+        $down = [$row+1, $column, $row < $this->RowCount];
         $left = [$row, $column-1, $column > 1];
-        $right = [$row, $column+1, $column < self::ColumnCount];
+        $right = [$row, $column+1, $column < $this->ColumnCount];
         
         return [$up, $down, $left, $right];
     }
@@ -128,8 +154,35 @@ class GameData
      * @param int $c
      * @return float|int
      */
-    public static function GetCellNumber(int $r, int $c)
+    public function GetCellNumber(int $r, int $c)
     {
-        return (($r * self::ColumnCount) - self::ColumnCount) + $c;
+        return (($r * $this->ColumnCount) - $this->ColumnCount) + $c;
+    }
+
+    public function RowCount(): int
+    {
+        //echo "<p>row called ".$this->RowCount."</p>";
+        return $this->RowCount;
+    }
+    public function ColumnCount(): int
+    {
+        //echo "<p>column called ".$this->ColumnCount."</p>";
+        return $this->ColumnCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinAtom(): int
+    {
+        return $this->MinAtom;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxAtom(): int
+    {
+        return $this->MaxAtom;
     }
 }

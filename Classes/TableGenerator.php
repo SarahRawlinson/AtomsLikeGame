@@ -15,10 +15,10 @@ class TableGenerator
         $count = 1;
         $value = "";
         $value .= '<table>';
-        for ($i = 1; $i <= GameData::RowCount; $i++) {
+        for ($i = 1; $i <= $_SESSION['game_data']->RowCount(); $i++) {
 
             $value .= '<tr>';
-            for ($j = 1; $j <= GameData::ColumnCount; $j++) {
+            for ($j = 1; $j <= $_SESSION['game_data']->ColumnCount(); $j++) {
                 $value .= '<td>';
                 //echo $count." r ".$i." c ".$j;
                 $cell = $_SESSION['game_data']->GetCell($count);

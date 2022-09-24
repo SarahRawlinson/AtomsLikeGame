@@ -22,7 +22,7 @@ class AI
             }
         }
         //var_dump($cellsDic['player'][2]);
-        for ($i = Cell::AtomMaxLimit; $i >= 0; $i--)
+        for ($i = $_SESSION['game_data']->getMaxAtom(); $i >= 0; $i--)
         {
             $chosenCell = self::GetPlayerMinExplode($cellsDic, $cells, $i);
             if ($chosenCell != -1)
@@ -64,11 +64,11 @@ class AI
      */
     public static function GetEqualValueAICellNextToPlayerCell(Cell $playerCell, array $cells, int $atoms) : int
     {
-        foreach (GameData::GetViableCells($playerCell->getRowPos(), $playerCell->getColumnPos()) as $pos) {
+        foreach ($_SESSION['game_data']->GetViableCells($playerCell->getRowPos(), $playerCell->getColumnPos()) as $pos) {
             list($newRow, $newColumn, $viable) = $pos;
             if ($viable)
             {
-                $cellNumber = GameData::GetCellNumber($newRow, $newColumn);
+                $cellNumber = $_SESSION['game_data']->GetCellNumber($newRow, $newColumn);
                 $checkCell = $cells[$cellNumber];
                 $winner = $checkCell->WinningPlayer();
                 if (!isset($winner))
@@ -101,7 +101,7 @@ class AI
         }        
         while (!$moveMade) {
             
-            $cell = $_SESSION['game_data']->GetCell(rand(1, GameData::ColumnCount * GameData::RowCount));
+            $cell = $_SESSION['game_data']->GetCell(rand(1, $_SESSION['game_data']->ColumnCount() * $_SESSION['game_data']->RowCount()));
             $moveMade = $cell->AddAtom($_SESSION['ai'], $_SESSION['player']);
         }
     }

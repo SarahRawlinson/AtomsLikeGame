@@ -114,7 +114,7 @@ body
 {
     background-color: slategrey;
     text-align: center;
-    font-family: Broadway;
+    font-family: Broadway, serif;
     background-image: url('../StockImages/photos_2017_9_5_fst_bokeh-texture-colorful.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -132,13 +132,11 @@ label
     border-style: inset;
     border-color: black;
     border-width: thick;
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
     display: inline-block;
     justify-content: space-evenly;
     white-space: pre-wrap;
     background-color: #160b21;
-
-    padding: 2px;
 
     outline-offset: 6px;
 }
