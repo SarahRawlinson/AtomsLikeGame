@@ -117,12 +117,17 @@ table
 
 body
 {
-    background-color: slategrey;
     text-align: center;
     font-family: Broadway, serif;
-    background-image: url('../StockImages/photos_2017_9_5_fst_bokeh-texture-colorful.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /*background-image: url('../StockImages/photos_2017_9_5_fst_bokeh-texture-colorful.jpg');*/
+    /*background-image: url('../StockImages/AI Generated Hotpot.ai/8-IdPzrhgCxgD8UYZ.png');*/
+    background: slategrey url('../StockImages/mytexture2.png') no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
     padding: 10px;
     display: block;
     cursor: context-menu;
