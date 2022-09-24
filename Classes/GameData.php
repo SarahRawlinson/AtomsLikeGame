@@ -4,6 +4,12 @@ class GameData
     private $cells;
     const RowCount = 8;
     const ColumnCount = 8;
+    private $set = false;
+    
+    public function IsSet():bool
+    {
+        return count($this->cells) > 0;
+    }
     
     public function __construct()
     {
@@ -15,7 +21,7 @@ class GameData
         return $this->cells;
     }
     
-    public function GetScore()
+    public function GetScore(): array
     {
         $cellsWon = [];
         $emptyCells = 0;

@@ -33,10 +33,20 @@ class GamePlay
                         AI::AIMove();
 
                     } else {
-                        $str .= "You cant select that cell";
+                        $str .= "You cant select that cell<br>";
                     }
-                    $table = TableGenerator::GenerateTable(true);
+                    list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
+                    if (count($playerUnits) == 1 && isset($_SESSION['started'])) {
+                        $str = "Game Over " . array_search(max($playerUnits), $playerUnits) . " Won!<br>";
+                        $table = TableGenerator::GenerateTable(false);
+                        session_destroy();
+                    }
+                    else
+                    {
+                        $table = TableGenerator::GenerateTable(true);
+                    }                    
                 }
+                
                 $_SESSION['started'] = true;
 
             }

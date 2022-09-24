@@ -1,5 +1,10 @@
 ﻿<?php
 require_once "include.php";
+if(isset($_SESSION))
+{
+    session_destroy();
+}
+session_start();
 $_SESSION['game_data'] = new GameData();
 $_SESSION['player'] = new Player('#00FFFF', 'player', 'ai');
 $_SESSION['ai'] = new Player('#DC143C', 'ai', 'player');

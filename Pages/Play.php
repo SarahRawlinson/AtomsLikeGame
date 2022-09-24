@@ -1,9 +1,13 @@
 ﻿<?php 
 require_once "include.php";
+if (!isset($_POST['selection'])) 
+{
+    header('Location: Main.php');
+}
 $str = "";
 $table = "";
 
- list($str, $table) = GamePlay::PlayGame($str, $table);
+list($str, $table) = GamePlay::PlayGame($str, $table);
 
 
 ?>

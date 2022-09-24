@@ -48,7 +48,6 @@ class AI
                 $cellNumber = self::GetEqualValueAICellNextToPlayerCell($playerCell, $cells, $atoms);
                 if ($cellNumber != -1)
                 {
-                    echo "<p>worked</p>";
                     return $cellNumber;
                 }
 
