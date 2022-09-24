@@ -2,8 +2,8 @@
 
 class Cell
 {
-    private $AtomMaxLimit = 4;
-    private $AtomMinLimit = 4;
+    private $AtomMaxLimit;
+    private $AtomMinLimit;
     const DefaultColour = "#FFD700";
     private  $rowPos;
     private  $columnPos;
@@ -18,9 +18,9 @@ class Cell
         $this->rowPos = $rowPos;
         $this->columnPos = $columnPos;
         $this->number = $number;
-        $this->atomLimit = rand($this->AtomMinLimit, $this->AtomMaxLimit);
         $this->AtomMaxLimit = $maxAtom;
         $this->AtomMinLimit = $minAtom;
+        $this->atomLimit = rand($this->AtomMinLimit, $this->AtomMaxLimit);        
     }
     
 //    public function WinningPlayer()

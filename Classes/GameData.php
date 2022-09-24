@@ -185,4 +185,22 @@ class GameData
     {
         return $this->MaxAtom;
     }
+
+    /**
+     * @param int $MinAtom
+     */
+    public function setMinAtom(int $MinAtom)
+    {
+        $this->MinAtom = $MinAtom;
+        echo "<p>Min Atom set ".$this->MinAtom."</p>";
+    }
+
+    /**
+     * @param int $MaxAtom
+     */
+    public function setMaxAtom(int $MaxAtom)
+    {
+        $this->MaxAtom = $MaxAtom;
+        echo "<p>Max Atom set ".$this->MaxAtom."</p>";
+    }
 }
