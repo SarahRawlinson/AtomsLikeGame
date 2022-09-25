@@ -20,19 +20,12 @@ $_SESSION['started'] = null;
 </head>
 
 <body>
+<h1>Exploding Atoms</h1><br>
 <a href="settings.php">settings</a><br><br>
 <form action="Play.php" method="post"> 
     <?php
-    $count = 1;
-    for ($i = 1; $i <= $_SESSION['game_data']->RowCount(); $i++)
-    {
-        for ($j = 1; $j <= $_SESSION['game_data']->ColumnCount(); $j++)
-        {
-            $cell = new Cell($i,$j,$count, $_SESSION['game_data']->getMaxAtom(), $_SESSION['game_data']->getMinAtom());
-            $_SESSION['game_data']->AddCell($cell);
-            $count++;
-        }        
-    }
+
+    GamePlay::GenerateCells();
     echo TableGenerator::GenerateTable(true);
     ?>       
     

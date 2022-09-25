@@ -19,6 +19,7 @@ list($str, $table) = GamePlay::PlayGame($str, $table);
 </head>
 
 <body>
+<h1>Exploding Atoms</h1><br>
 <p><?=$str?></p>
 
 <form action="Play.php" method="post">

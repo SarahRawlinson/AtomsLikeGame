@@ -7,12 +7,15 @@ class CSVWriter
     public function __construct()
     {
         $digits = 5;
+        $ip = GetIP::getUserIP();
+        $ip = str_replace(".", "-",$ip);
         $r = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, $digits);
-        $this->file = "../CSV/gameplay_".$r."_".date("Y-m-d_h-i-sa").".csv";
+        $this->file = "../CSV/gameplay_".$r."_".date("Y-m-d_h-i-sa")."_$ip.csv";        
         $file = fopen($this->file, "w");
         fputcsv($file, ['player', 'cell', 'atoms', 'time', 'status']);
         fclose($file);
     }
+    
     public function AddData($player, $row, $column, $atoms, $status)
     {
         //$data = [$player, $row.$column, $atoms.""];

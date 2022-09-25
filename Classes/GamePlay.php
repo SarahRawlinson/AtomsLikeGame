@@ -65,4 +65,38 @@ class GamePlay
         }
         return array($str, $table);
     }
+
+    /**
+     * @return void
+     */
+    public static function GenerateCells()
+    {
+        $rowCount = $_SESSION['game_data']->RowCount();
+        $columnCount = $_SESSION['game_data']->ColumnCount();
+        $count = 1;
+        for ($i = 1; $i <= $rowCount; $i++) {
+            for ($j = 1; $j <= $columnCount; $j++) {
+                $minAtoms = $_SESSION['game_data']->getMinAtom();
+                $maxAtoms = $_SESSION['game_data']->getMaxAtom();
+                
+                if ($_SESSION['game_data']->isHalfCorners())
+                {
+                    if ($i == 1 || $i == $rowCount)
+                    {
+                        $minAtoms = $minAtoms - round($minAtoms/4);
+                        $maxAtoms = $maxAtoms - round($maxAtoms/4);
+                    }
+                    if ($j == 1 || $j == $columnCount)
+                    {
+                        $minAtoms = $minAtoms - round($minAtoms/4);
+                        $maxAtoms = $maxAtoms - round($maxAtoms/4);
+                    }
+                }            
+                
+                $cell = new Cell($i, $j, $count, $maxAtoms, $minAtoms);
+                $_SESSION['game_data']->AddCell($cell);
+                $count++;
+            }
+        }
+    }
 }

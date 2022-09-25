@@ -3,129 +3,52 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\CSV\gameplay_03zLY_2022-09-25_12-39-05am.csv">
+        <entry key="\CSV\gameplay_2ZblL_2022-09-25_02-56-13pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_B0Ppb_2022-09-25_01-07-42am.csv">
+        <entry key="\CSV\gameplay_Cgf63_2022-09-25_03-19-59pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_BL6hZ_2022-09-25_01-44-03am.csv">
+        <entry key="\CSV\gameplay_YFf8X_2022-09-25_02-58-13pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_CaYQV_2022-09-25_01-18-54am.csv">
+        <entry key="\CSV\gameplay_t3SaH_2022-09-25_02-56-16pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_Ff5MO_2022-09-25_12-59-21am.csv">
+        <entry key="\CSV\gameplay_tiVFo_2022-09-25_03-03-21pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_OmNLg_2022-09-25_12-38-21am.csv">
+        <entry key="\CSV\gameplay_vnGw6_2022-09-25_03-12-18pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\CSV\gameplay_RDobJ_2022-09-25_12-58-05am.csv">
+        <entry key="\CSV\gameplay_xIJyo_2022-09-25_03-54-42pm.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_XiHbP_2022-09-25_12-38-21am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_Z7YO4_2022-09-25_01-41-00am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_ZwhX1_2022-09-25_01-18-07am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_e0Yxw_2022-09-25_01-15-21am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_rGmHt_2022-09-25_01-10-14am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\CSV\gameplay_vHwph_2022-09-25_01-16-53am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Classes\gameplay_5mO_2022-09-25_12-37-11am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Classes\temp.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\StockImages\CSVWriter.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=";" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\StockImages\gameplay_7JeP8_2022-09-25_01-25-20am.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\StockImages\users.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>

@@ -37,6 +37,12 @@ if (isset($_POST['max_atom']))
     }
     
 }
+if (isset($_POST['half_corners']))
+{
+    var_dump($_POST['half_corners']);
+    $_SESSION['game_data']->setHalfCorners($_POST['half_corners'] == 'true');
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -47,7 +53,7 @@ if (isset($_POST['max_atom']))
 </head>
 
 <body>
-<!--<p>--><?//=$str?><!--</p>-->
+<h1>Settings</h1><br>
 
 <form action="settings.php" method="post">
     <label for="row_count">Row Count:</label>
@@ -105,6 +111,20 @@ if (isset($_POST['max_atom']))
             $selected = $i==$maxAtom?"selected='selected'":"";
             echo "<option value=$i $selected>$i</option>";
         }
+        ?>
+    </select>
+    <button type="submit">Select</button>
+</form>
+
+<form action="settings.php" method="post">
+    <label for="half_corners">Half Corners:</label>
+    <select name="half_corners" id="half_corners">
+        <?php
+        $halfCorners = $_SESSION['game_data']->isHalfCorners();
+        $selected = $halfCorners?"selected='selected'":"";
+        echo "<option value=true $selected>on</option>";
+        $selected = !$halfCorners?"selected='selected'":"";
+        echo "<option value=false $selected>off</option>";
         ?>
     </select>
     <button type="submit">Select</button>

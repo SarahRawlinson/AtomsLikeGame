@@ -7,6 +7,7 @@ class GameData
     private $set = false;
     private $MinAtom = 4;
     private $MaxAtom = 4;
+    private $HalfCorners = true;
 
     public function Reset()
     {
@@ -131,22 +132,28 @@ class GameData
      */
     public function GetViableCells(int $row, int $column): array
     {
-
-        if ($row < $this->RowCount) {
-            $rows[] = $row + 1;
+        $options = [];
+        if (!$this->HalfCorners || $row > 1) 
+        {
+            $up = [$row-1, $column, $row > 1];
+            $options[] = $up;
         }
-        if ($column > 1) {
-            $columns[] = $column - 1;
+        if (!$this->HalfCorners || $row < $this->RowCount) 
+        {
+            $down = [$row+1, $column, $row < $this->RowCount];
+            $options[] = $down;
         }
-        if ($column < $this->ColumnCount) {
-            $columns[] = $column + 1;
+        if (!$this->HalfCorners || $column > 1) 
+        {
+            $left = [$row, $column-1, $column > 1];
+            $options[] = $left;
         }
-        $up = [$row-1, $column, $row > 1];
-        $down = [$row+1, $column, $row < $this->RowCount];
-        $left = [$row, $column-1, $column > 1];
-        $right = [$row, $column+1, $column < $this->ColumnCount];
-        
-        return [$up, $down, $left, $right];
+        if (!$this->HalfCorners || $this->ColumnCount) 
+        {
+            $right = [$row, $column+1, $column < $this->ColumnCount];
+            $options[] = $right;
+        }        
+        return $options;
     }
 
     /**
@@ -202,5 +209,21 @@ class GameData
     {
         $this->MaxAtom = $MaxAtom;
         echo "<p>Max Atom set ".$this->MaxAtom."</p>";
+    }
+
+    /**
+     * @param bool $HalfCorners
+     */
+    public function setHalfCorners(bool $HalfCorners)
+    {
+        $this->HalfCorners = $HalfCorners;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHalfCorners(): bool
+    {
+        return $this->HalfCorners;
     }
 }
