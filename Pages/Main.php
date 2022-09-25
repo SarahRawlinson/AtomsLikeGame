@@ -8,6 +8,7 @@ else
 {
     $_SESSION['game_data'] = new GameData();    
 }
+$_SESSION['csv_writer'] = new CSVWriter();
 $_SESSION['player'] = new Player('#00FFFF', 'player', 'ai');
 $_SESSION['ai'] = new Player('#DC143C', 'ai', 'player');
 $_SESSION['started'] = null;

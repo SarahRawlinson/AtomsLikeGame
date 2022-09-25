@@ -110,7 +110,7 @@ class GameData
                 $newCell = $this->GetCellByPosition($newRow, $newColumn);
                 //echo "cell number ".$newCell->getNumber()."<br>";
                 $newCell->ChangeAllAtoms($winner);
-                $newCell->AddAtom($winner,$_SESSION[$winner->GetOpponent()]);
+                $newCell->AddAtom($winner,$_SESSION[$winner->GetOpponent()], "exploded");
             }
 //            else {
 //                echo "Cell lost to the either<br>";

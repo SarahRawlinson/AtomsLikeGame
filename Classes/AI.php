@@ -97,12 +97,12 @@ class AI
         if ($number != -1)
         {
             $cell = $_SESSION['game_data']->GetCell($number);
-            $moveMade = $cell->AddAtom($_SESSION['ai'], $_SESSION['player']);
+            $moveMade = $cell->AddAtom($_SESSION['ai'], $_SESSION['player'], "move made");
         }        
         while (!$moveMade) {
             
             $cell = $_SESSION['game_data']->GetCell(rand(1, $_SESSION['game_data']->ColumnCount() * $_SESSION['game_data']->RowCount()));
-            $moveMade = $cell->AddAtom($_SESSION['ai'], $_SESSION['player']);
+            $moveMade = $cell->AddAtom($_SESSION['ai'], $_SESSION['player'], "move made");
         }
     }
 }

@@ -5,8 +5,8 @@ class Cell
     private $AtomMaxLimit;
     private $AtomMinLimit;
     const DefaultColour = "#FFD700";
-    private  $rowPos;
-    private  $columnPos;
+    private  $rowPos = 0;
+    private  $columnPos = 0;
     private  $number;
     private  $atomLimit;
     private  $atoms = 0;
@@ -43,7 +43,7 @@ class Cell
         return $_SESSION[$this->playerAtoms[0]];
     }
     
-    public function AddAtom(IPlayer $player, IPlayer $opponent): bool
+    public function AddAtom(IPlayer $player, IPlayer $opponent, $status): bool
     {
         if (count($this->playerAtoms) > 0 && !in_array($player->GetName(), $this->playerAtoms))
         {
@@ -55,6 +55,10 @@ class Cell
         {            
             $this->Explode($player);            
         }
+        else
+        {
+            $this->UpdateCSV($status);
+        }        
         return true;
     }
 
@@ -138,19 +142,34 @@ class Cell
         {            
             $this->playerAtoms[$i] = $winner->GetName();
         }
+        $this->UpdateCSV("won by explode");
     }
 
     public function GetPlayerAtoms(): int
     {
         return count($this->playerAtoms);
     }
+    private function UpdateCSV(string $status)
+    {
+        $winner = $this->WinningPlayer();
+        if (isset($winner))
+        {
+            $player = $winner->GetName();
+        }
+        else
+        {
+            $player = "empty";
+        }        
+        $_SESSION['csv_writer']->AddData($player, $this->rowPos, $this->columnPos, $this->atoms, $status);
+    }
 
     /**
      * @return void
      */
     public function EmptyCell()
-    {
+    {        
         $this->atoms = 0;
         $this->playerAtoms = [];
+        $this->UpdateCSV("cell emptied");
     }
 }

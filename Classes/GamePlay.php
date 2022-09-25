@@ -21,7 +21,7 @@ class GamePlay
             } else {
                 //var_dump($_POST['selection']);
                 $cell = $_SESSION['game_data']->GetCell($_POST['selection']);
-                $valid = $cell->AddAtom($_SESSION['player'], $_SESSION['ai']);
+                $valid = $cell->AddAtom($_SESSION['player'], $_SESSION['ai'], "move made");
                 list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
                 if (count($playerUnits) == 1 && isset($_SESSION['started'])) {
                     $str = "Game Over " . array_search(max($playerUnits), $playerUnits) . " Won!<br>";
