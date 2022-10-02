@@ -8,6 +8,7 @@ class GameData
     private $MinAtom = 4;
     private $MaxAtom = 4;
     private $HalfCorners = true;
+    private $gameStop = false;
 
     public function Reset()
     {
@@ -93,6 +94,12 @@ class GameData
     
     public function CellExploded(Cell $cell, IPlayer $winner)
     {
+
+        list($cellsWon, $emptyCells, $playerUnits) = $_SESSION['game_data']->GetScore();
+        if (count($playerUnits) == 1 && isset($_SESSION['started'])|| $this->gameStop) {
+            $this->gameStop = true;
+            return;
+        }
         //echo $cell->getNumber()." has exploded by ".$winner->GetName()."<br>";
         $row = $cell->getRowPos();
         $column = $cell->getColumnPos();
